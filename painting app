@@ -1,0 +1,373 @@
+//painter app
+
+float z;
+
+PImage testimage;
+
+boolean watermelon;
+boolean buttonYellow;
+boolean buttonGreen;
+boolean buttonRed;
+boolean buttonLightblue;
+boolean buttonDarkblue;
+boolean buttonPink;
+
+void setup () {
+  size(600, 600);
+  background(255);
+  
+  z = 50;
+  
+  testimage = loadImage("watermelon.png");
+  watermelon = false;
+  
+  buttonYellow = false;
+  buttonGreen = false;
+  buttonRed = false;
+  buttonLightblue = false;
+  buttonDarkblue = false;
+  buttonPink = false;
+}
+
+void draw () {
+  fill(255);
+  
+  colourselector(0, 0);
+  watermeloncontrol();
+  tactile(0, 0, 100, 100);
+  rect(0, 0, 100, 100);
+  image(testimage, 0, 0, 100, 100);
+  colourindicator(0, 0);
+  thicknesscontrol(0, 0);
+  button(0, 0);
+}
+
+void mouseDragged () {
+  if (watermelon == false) {
+  strokeWeight(z/5);
+  stroke(0);
+  line(pmouseX, pmouseY, mouseX, mouseY);
+  } else {
+    image(testimage, mouseX, mouseY, 100, 100);
+    buttonYellow = false;
+    buttonGreen = false;
+    buttonRed = false;
+    buttonLightblue = false;
+    buttonDarkblue = false;
+    buttonPink = false;
+  }
+  //button ========================================================================================================
+  if (buttonYellow == true) {
+    watermelon = false;
+    buttonGreen = false;
+    buttonRed = false;
+    buttonLightblue = false;
+    buttonDarkblue = false;
+    buttonPink = false;
+    stroke(255, 255, 0);
+    line(pmouseX, pmouseY, mouseX, mouseY);
+  }
+  if (buttonGreen == true) {
+    watermelon = false;
+    buttonYellow = false;
+    buttonRed = false;
+    buttonLightblue = false;
+    buttonDarkblue = false;
+    buttonPink = false;
+    stroke(0, 255, 0);
+    line(pmouseX, pmouseY, mouseX, mouseY);
+  }
+  if (buttonRed == true) {
+    watermelon = false;
+    buttonYellow = false;
+    buttonGreen = false;
+    buttonLightblue = false;
+    buttonDarkblue = false;
+    buttonPink = false;
+    stroke(255, 0, 0);
+    line(pmouseX, pmouseY, mouseX, mouseY);
+  }
+  if (buttonLightblue == true) {
+    watermelon = false;
+    buttonYellow = false;
+    buttonGreen = false;
+    buttonRed = false;
+    buttonDarkblue = false;
+    buttonPink = false;
+    stroke(0, 255, 255);
+    line(pmouseX, pmouseY, mouseX, mouseY);
+  }
+  if (buttonDarkblue == true) {
+    watermelon = false;
+    buttonYellow = false;
+    buttonGreen = false;
+    buttonRed = false;
+    buttonLightblue = false;
+    buttonPink = false;
+    stroke(0, 0, 255);
+    line(pmouseX, pmouseY, mouseX, mouseY);
+  }
+  if (buttonPink == true) {
+    watermelon = false;
+    buttonYellow = false;
+    buttonGreen = false;
+    buttonRed = false;
+    buttonLightblue = false;
+    buttonDarkblue = false;
+    stroke(255, 0, 255);
+    line(pmouseX, pmouseY, mouseX, mouseY);
+  }
+  //new buttons ========================================================================================================
+  //thickness control
+  if (mouseX > 0 && mouseX < 80 && mouseY > 250 && mouseY < 270) {
+    z = mouseX;
+  }
+}
+
+void mouseReleased() {
+  if (mouseX > 0 && mouseX < 100 && mouseY > 0 && mouseY < 100) {
+    watermelon = !watermelon;
+  }
+  
+  //buttons ========================================================================================================
+  if (mouseX > 10 && mouseX < 50 && mouseY > 120 && mouseY < 140) {
+    buttonYellow = !buttonYellow;
+  }
+  if (mouseX > 70 && mouseX < 110 && mouseY > 120 && mouseY < 140) {
+    buttonGreen = !buttonGreen;
+  }
+  if (mouseX > 10 && mouseX < 50 && mouseY > 150 && mouseY < 170) {
+    buttonRed = !buttonRed;
+  }
+  if (mouseX > 70 && mouseX < 110 && mouseY > 150 && mouseY < 170) {
+    buttonLightblue = !buttonLightblue;
+  }
+  if (mouseX > 10 && mouseX < 50 && mouseY > 180 && mouseY < 200) {
+    buttonDarkblue = !buttonDarkblue;
+  }
+  if (mouseX > 70 && mouseX < 110 && mouseY > 180 && mouseY < 200) {
+    buttonPink = !buttonPink;
+  }
+  
+  //clear button
+  if (mouseX > 10 && mouseX < 50 && mouseY > 290 && mouseY < 310) {
+    background(255);
+  }
+  
+  //save
+  if (mouseX > 10 && mouseX < 50 && mouseY > 320 && mouseY < 340) {
+    selectOutput("Choose a name for your new image file", "saveImage");
+  }
+  
+  //load
+  if (mouseX > 10 && mouseX < 50 && mouseY > 350 && mouseY < 370) {
+   selectInput("Pick an image to load", "openImage");
+  }
+}
+
+void tactile(int x, int y, int w, int h) {
+  if (mouseX > x && mouseX < x+w && mouseY > y && mouseY < y+h) {
+    fill(255, 255, 0);
+  } else {
+    fill(255);
+  }
+}
+
+void watermeloncontrol() {
+  if (watermelon == true) {
+    stroke(255, 0, 0);
+    strokeWeight(5);
+  } else {
+    stroke(0);
+    strokeWeight(1);
+  }
+}
+
+void colourselector(int x, int y) {
+  //background ========================================================================================================
+  strokeWeight(1);
+  stroke(0);
+  fill(100);
+  rect(0, 0, 120, 600);
+  
+  if (buttonYellow == true) {
+    strokeWeight(5);
+    stroke(0);
+  } else {
+    strokeWeight(1);
+    stroke(0);
+  }
+  if (buttonGreen == true) {
+    strokeWeight(5);
+    stroke(0);
+  } else {
+    strokeWeight(1);
+    stroke(0);
+  }
+  if (buttonRed == true) {
+    strokeWeight(5);
+    stroke(0);
+  } else {
+    strokeWeight(1);
+    stroke(0);
+  }
+  if (buttonLightblue == true) {
+    strokeWeight(5);
+    stroke(0);
+  } else {
+    strokeWeight(1);
+    stroke(0);
+  }
+  if (buttonDarkblue == true) {
+    strokeWeight(5);
+    stroke(0);
+  } else {
+    strokeWeight(1);
+    stroke(0);
+  }
+  if (buttonPink == true) {
+    strokeWeight(5);
+    stroke(0);
+  } else {
+    strokeWeight(1);
+    stroke(0);
+  }
+  
+  //buttons   ========================================================================================================
+  //yellow
+  if (mouseX > 10 && mouseX < 50 && mouseY > 120 && mouseY < 140) {
+    strokeWeight(5);
+    stroke(0);
+  } else {
+    strokeWeight(1);
+    stroke(0);
+  }
+  fill(255, 255, 0);
+  rect(10, 120, 40, 20);
+  //green     ========================================================================================================
+  if (mouseX > 70 && mouseX < 110 && mouseY > 120 && mouseY < 140) {
+    strokeWeight(5);
+    stroke(0);
+  } else {
+    strokeWeight(1);
+    stroke(0);
+  }
+  fill(0, 255, 0);
+  rect(70, 120, 40, 20);
+  //red             ==================================================================================================
+  if (mouseX > 10 && mouseX < 50 && mouseY > 150 && mouseY < 170) {
+    strokeWeight(5);
+    stroke(0);
+  } else {
+    strokeWeight(1);
+    stroke(0);
+  }
+  fill(255, 0, 0);
+  rect(10, 150, 40, 20);
+  //lightblue ========================================================================================================
+  if (mouseX > 70 && mouseX < 110 && mouseY > 150 && mouseY < 170) {
+    strokeWeight(5);
+    stroke(0);
+  } else {
+    strokeWeight(1);
+    stroke(0);
+  }
+  fill(0, 255, 255);
+  rect(70, 150, 40, 20);
+  //darkblue  ========================================================================================================
+  if (mouseX > 10 && mouseX < 50 && mouseY > 180 && mouseY < 200) {
+    strokeWeight(5);
+    stroke(0);
+  } else {
+    strokeWeight(1);
+    stroke(0);
+  }
+  fill(0, 0, 255);
+  rect(10, 180, 40, 20);
+  //pink      ========================================================================================================
+  if (mouseX > 70 && mouseX < 110 && mouseY > 180 && mouseY < 200) {
+    strokeWeight(5);
+    stroke(0);
+  } else {
+    strokeWeight(1);
+    stroke(0);
+  }
+  fill(255, 0, 255);
+  rect(70, 180, 40, 20);
+}
+
+void colourindicator(int x, int y) {
+  strokeWeight(0);
+  fill(0);
+  if (buttonYellow == true) {
+    stroke(255, 255, 0);
+  }
+  if (buttonGreen == true) {
+    stroke(0, 255, 0);
+  }
+  if (buttonRed == true) {
+    stroke(255, 0, 0);
+  }
+  if (buttonLightblue == true) {
+    stroke(0, 255, 255);
+  }
+  if (buttonDarkblue == true) {
+    stroke(0, 0, 255);
+  }
+  if (buttonPink == true) {
+    stroke(255, 0, 255);
+  }
+  
+  strokeWeight(z/5);
+  line(10, 220, 80, 220);
+}
+
+void thicknesscontrol(int x, int y) {
+  stroke(255, 0, 0);
+  strokeWeight(5);
+  line(0, 260, 80, 260);
+  fill(0);
+  strokeWeight(0);
+  circle(z, 260, 20);
+  //if (mouseX > 0 && mouseX < 80 && mouseY > 250 && mouseY < 270) {
+  //  x = mouseX;
+  //}
+}  
+
+void button(int x, int y) {
+  //button clear
+  fill(255);
+  rect(10, 290, 40, 20);
+  fill(0);
+  text("clear", 20, 300);
+  
+  //button save
+  fill(255);
+  rect(10, 320, 40, 20);
+  fill(0);
+  text("save", 20, 330);
+  
+  //button load
+  fill(255);
+  rect(10, 350, 40, 20);
+  fill(0);
+  text("load", 20, 360);
+}
+
+void saveImage(File f) {
+  if (f != null) {
+    PImage melon = get( 71, 1, width-71, height-1);
+    melon.save(f.getAbsolutePath());
+  }
+}
+
+void openImage(File f) {
+  if (f != null) {
+    int n = 0;
+    while (n > 100) {
+      PImage pic = loadImage(f.getPath());
+      image(pic, 0, 0);
+      n = n + 1;
+    }
+  }
+}
